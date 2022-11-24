@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_main"
+    app:startDestination="@id/listCharactersFragment">
+
+    <fragment
+        android:id="@+id/listCharactersFragment"
+        android:name="com.romanuriel.coroutines.ui.ListCharactersFragment"
+        android:label="fragment_list_characters"
+        tools:layout="@layout/fragment_list_characters" >
+        <action
+            android:id="@+id/action_listCharactersFragment_to_infoCharactersItemFragment"
+            app:destination="@id/infoCharactersItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoCharactersItemFragment"
+        android:name="com.romanuriel.coroutines.ui.InfoCharactersItemFragment"
+        android:label="fragment_info_characters_item"
+        tools:layout="@layout/fragment_info_characters_item" />
+</navigation>
