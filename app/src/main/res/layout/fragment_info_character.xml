@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.InfoCharacterFragment">
+
+    <RelativeLayout
+        android:id="@+id/container_image_character"
+        tools:viewBindingIgnore="true"
+        android:layout_width="205dp"
+        android:layout_height="205dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_list"
+            tools:viewBindingIgnore="true"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            app:cardUseCompatPadding="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/image_character"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars"/>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_image_character">
+
+        <LinearLayout
+            android:id="@+id/container_name_character"
+            tools:viewBindingIgnore="true"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/txt_name_indicator"
+                android:text="@string/name_character"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_status_info"
+            tools:viewBindingIgnore="true"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/container_name_character">
+            <TextView
+                android:id="@+id/status_character_indicator"
+                tools:viewBindingIgnore="true"
+                android:layout_marginHorizontal="@dimen/margindatecharacter"
+                android:text="@string/status_character"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/status_character"
+                android:text="@string/status_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_type_character"
+            tools:viewBindingIgnore="true"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/container_status_info">
+
+            <TextView
+                android:id="@+id/type_character_indicator"
+                tools:viewBindingIgnore="true"
+                android:layout_marginHorizontal="@dimen/margindatecharacter"
+                android:text="@string/type_character"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/type_character"
+                android:text="@string/type_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_gender_character"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            tools:viewBindingIgnore="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/container_type_character">
+            <TextView
+                android:id="@+id/gener_character_indicator"
+                tools:viewBindingIgnore="true"
+                android:layout_marginHorizontal="@dimen/margindatecharacter"
+                android:text="@string/gender_character"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/gener_character"
+                android:text="@string/gender_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_date_create"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            tools:viewBindingIgnore="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/container_gender_character">
+
+            <TextView
+                android:id="@+id/date_create_character_indicator"
+                android:layout_marginHorizontal="@dimen/margindatecharacter"
+                tools:viewBindingIgnore="true"
+                android:text="@string/create_character"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/date_create_character"
+                tools:viewBindingIgnore="true"
+                android:text="@string/create_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_origin_character"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            tools:viewBindingIgnore="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/container_date_create">
+
+            <TextView
+                android:id="@+id/origin_character_indicator"
+                android:layout_marginHorizontal="@dimen/margindatecharacter"
+                tools:viewBindingIgnore="true"
+                android:text="@string/origin_character"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/origin_character"
+                android:text="@string/origin_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_location_character"
+            android:layout_marginVertical="@dimen/margindatecharacter"
+            tools:viewBindingIgnore="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/container_origin_character">
+
+            <TextView
+                android:id="@+id/location_character_indicator"
+                android:layout_marginHorizontal="@dimen/margindatecharacter"
+                tools:viewBindingIgnore="true"
+                android:text="@string/location_character"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/location_character"
+                android:text="@string/location_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

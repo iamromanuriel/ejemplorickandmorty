@@ -19,22 +19,29 @@ class ViewModelCharacters @Inject constructor(
 ): ViewModel() {
 
     val mutableLiveDataListCharacters = MutableLiveData<List<CharacterItem>?>()
-    val mutableLiveDataApiItemCharacter = MutableLiveData<CharacterItem?>()
-    val mutableLiveDataApiListCharacter = MutableLiveData<List<CharacterItem>>()
-    //Database
-    val mutableLiveDataListCharacterItemRoom = MutableLiveData<List<CharacterItem>>()
-    val mutableLiveDataCharacterItemRoom = MutableLiveData<CharacterItem>()
+    val mutableLiveDataItemCharacter = MutableLiveData<CharacterItem?>()
 
 
 
-    var characterJob: Job? = null
-
+    fun getListCharacter()= viewModelScope.launch{
+        val result = repo.getCharactersList()
+        mutableLiveDataListCharacters.postValue(result)
+    }
 
     fun getItemCharacterApi(id: String) = viewModelScope.launch {
         val itemCharacter = repo.getItemCharacteritem(id)
-        mutableLiveDataApiItemCharacter.postValue(itemCharacter)
+        mutableLiveDataItemCharacter.postValue(itemCharacter)
     }
 
+    var characterJob: Job? = null
+    fun getItemCharacter(id: Int) = viewModelScope.launch{
+        val response = repo.getCharacterItem(id)
+        mutableLiveDataItemCharacter.postValue(response)
+    }
+
+    fun deleteCharacterItem(id: Int) = viewModelScope.launch{
+        repo.deleteCharacterItem(id)
+    }
 
 
     //Test RxJava
@@ -42,7 +49,7 @@ class ViewModelCharacters @Inject constructor(
     fun getTestRxJavaCharacter() {
         disposable.add(repo.getListCharacterTest().subscribeOn(Schedulers.io()).observeOn(
             AndroidSchedulers.mainThread()).subscribe({
-               mutableLiveDataApiListCharacter.postValue(it.results)
+               mutableLiveDataListCharacters.postValue(it.results)
         },{
             println(it.message)
         }))
@@ -51,7 +58,7 @@ class ViewModelCharacters @Inject constructor(
     fun getCharacterItemRoomDb(id: Int){
         disposable.add(repo.getCharacteritem(id).subscribeOn(Schedulers.io()).observeOn(
             AndroidSchedulers.mainThread()).subscribe({
-            mutableLiveDataCharacterItemRoom.postValue(it)
+            mutableLiveDataItemCharacter.postValue(it)
         },{
             println(it.message)
         }))
@@ -65,36 +72,44 @@ class ViewModelCharacters @Inject constructor(
 
     fun actionGetListCharacterRoom(){
         disposable.add(repo.getListCharacterRoom().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
-             mutableLiveDataListCharacterItemRoom.postValue(it)
+             mutableLiveDataListCharacters.postValue(it)
         },{
             println(it.message)
         }))
     }
 
     fun actionGetListCharacterItemObservable(){
-        repo.getListCharacterItemObservable().subscribe({list ->
-                              list.forEach {
-                                  println("Este es un $it")
-                              }
-        },{
-            println(it.message)
-        })
+        disposable.add(
+            repo.getListCharacterItemObservable().subscribe({list ->
+                list.forEach {
+                    println("Este es un $it")
+                }
+            },{
+                println(it.message)
+            })
+        )
+
     }
 
     fun actionGetListCharacterItemMaybe(){
-        repo.getListCharacterItemMaybe().subscribe({
-             it.forEach { it-> println(it) }
-        },{
-            println(it.message)
-        })
+        disposable.add(
+            repo.getListCharacterItemMaybe().subscribe({
+                it.forEach { it-> println(it) }
+            },{
+                println(it.message)
+            })
+        )
     }
 
     fun actionGetListCharacterItemFlowable(){
-        repo.getListCharacterItemFlowable().subscribe({
-            it.forEach { it-> println(it) }
-        },{
-            println("Error en ${it.message}")
-        })
+        disposable.add(
+            repo.getListCharacterItemFlowable().subscribe({
+                it.forEach { it-> println(it) }
+            },{
+                println("Error en ${it.message}")
+            })
+        )
+
     }
 
 }

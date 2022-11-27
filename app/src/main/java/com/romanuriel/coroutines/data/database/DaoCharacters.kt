@@ -14,7 +14,19 @@ import io.reactivex.Single
 @Dao
 interface DaoCharacters {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addDatabase(characterItem: CharacterItem?): Completable
+    fun addCharacter(characterItem: CharacterItem?): Completable
+
+    @Insert
+    fun insertCharacter(characterItem: CharacterItem?)
+
+    @Query("DELETE FROM tb_characters WHERE id = :id")
+    suspend fun delete(id: Int)
+
+    @Query("SELECT * FROM tb_characters")
+    fun getListCharacter(): List<CharacterItem>
+
+    @Query("SELECT * FROM tb_characters WHERE id = :id")
+    fun getCharacteritem(id: Int): CharacterItem
 
     @Query("SELECT * FROM tb_characters")
     fun getListCharactersItems(): Single<List<CharacterItem>>
