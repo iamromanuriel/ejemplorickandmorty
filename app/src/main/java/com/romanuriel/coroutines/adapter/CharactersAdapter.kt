@@ -9,14 +9,19 @@ import com.romanuriel.coroutines.R
 import com.romanuriel.coroutines.databinding.CardItemBinding
 import com.romanuriel.coroutines.model.item.CharacterItem
 
-class CharactersAdapter (
-    private val listCharacters: List<CharacterItem?>): RecyclerView
+class CharactersAdapter (): RecyclerView
     .Adapter<CharactersAdapter.ViewHolder>(){
-    var onItemClick: ((CharacterItem?) -> Unit)? = null
 
+    var onItemClick: ((CharacterItem?) -> Unit)? = null
+    private var listCharacters : List<CharacterItem?> = emptyList()
 
     inner class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val binding = CardItemBinding.bind(view)
+    }
+
+    fun setCaracters(list: List<CharacterItem>){
+        listCharacters = list.toMutableList()
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

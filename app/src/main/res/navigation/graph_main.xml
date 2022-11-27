@@ -11,12 +11,16 @@
         android:label="fragment_list_characters"
         tools:layout="@layout/fragment_list_characters" >
         <action
-            android:id="@+id/action_listCharactersFragment_to_infoCharactersItemFragment"
-            app:destination="@id/infoCharactersItemFragment" />
+            android:id="@+id/action_listCharactersFragment_to_infoCharacterFragment"
+            app:destination="@id/infoCharacterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/infoCharactersItemFragment"
-        android:name="com.romanuriel.coroutines.ui.InfoCharactersItemFragment"
-        android:label="fragment_info_characters_item"
-        tools:layout="@layout/fragment_info_characters_item" />
+        android:id="@+id/infoCharacterFragment"
+        android:name="com.romanuriel.coroutines.ui.InfoCharacterFragment"
+        android:label="fragment_info_character"
+        tools:layout="@layout/fragment_info_character" >
+        <argument
+            android:name="arg_character"
+            app:argType="com.romanuriel.coroutines.model.item.CharacterItem" />
+    </fragment>
 </navigation>
